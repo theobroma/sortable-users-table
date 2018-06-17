@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Table, Icon } from 'semantic-ui-react';
+import { Grid, Table, Icon } from 'semantic-ui-react';
 //mock data if needed
 import MOCK_DATA from '../helpers/MOCK_DATA.json';
 //import TableRow from './TableRow';
@@ -23,31 +23,39 @@ export default class MainSection extends React.Component {
 
   render() {
     const { clients } = this.props;
+    const tableHeader = (
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>
+            First Name<Icon name={'sort'} />
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            Last Name<Icon name={'sort'} />
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            Phone<Icon name={'sort'} />
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            gender<Icon name={'sort'} />
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            age<Icon name={'sort'} />
+          </Table.HeaderCell>
+          <Table.HeaderCell />
+        </Table.Row>
+      </Table.Header>
+    );
     return (
-      <Table striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>
-              First Name<Icon name={'sort'} />
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              Last Name<Icon name={'sort'} />
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              Phone<Icon name={'sort'} />
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              gender<Icon name={'sort'} />
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              age<Icon name={'sort'} />
-            </Table.HeaderCell>
-            <Table.HeaderCell />
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>{this.renderClients()}</Table.Body>
-      </Table>
+      <Grid textAlign="center" verticalAlign="middle" className="register-form-inner">
+        <Grid.Row>
+          <Grid.Column>
+            <Table striped>
+              {tableHeader}
+              <Table.Body>{this.renderClients()}</Table.Body>
+            </Table>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
