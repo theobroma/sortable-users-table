@@ -7,6 +7,10 @@ import MOCK_DATA from '../helpers/MOCK_DATA.json';
 import TableRow from '../Containers/TableRow';
 
 export default class MainSection extends React.Component {
+  componentWillMount() {
+    this.props.getUsers();
+  }
+
   renderClients() {
     const { users } = this.props;
     return MOCK_DATA.map(user => <TableRow key={user.id} user={user} />);

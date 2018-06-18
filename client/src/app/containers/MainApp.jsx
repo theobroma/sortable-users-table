@@ -3,7 +3,7 @@ import React from 'react';
 
 import MainSection from '../components/MainSection';
 import FormSection from '../components/FormSection';
-import { toggleFilter } from '../actions';
+import { getUsers } from '../actions';
 
 class MainApp extends React.Component {
   render() {
@@ -16,6 +16,7 @@ class MainApp extends React.Component {
             clients={users}
             filters={this.props.filters}
             editCell={this.props.editCell}
+            getUsers={this.props.getUsers}
           />
         </main>
         <aside className="right-sidebar">
@@ -31,7 +32,9 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getUsers: () => dispatch(getUsers())
+});
 
 export default connect(
   mapStateToProps,
