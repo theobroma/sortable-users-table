@@ -8,8 +8,10 @@ const logger = createLogger({
   collapsed: true
 });
 
+const middlewares = [thunk, logger];
+
 const composeEnhancers = composeWithDevTools({
   // Specify here name, actionsBlacklist, actionsCreators and other options
 });
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)));
 export default store;

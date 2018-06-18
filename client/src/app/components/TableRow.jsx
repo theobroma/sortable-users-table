@@ -5,14 +5,14 @@ import TableRowItem from './TableRowItem';
 
 export class TableRow extends React.Component<any, any> {
   render() {
-    // const { id, first_name, last_name, phone, gender, age } = this.props.users;
+    // const { id, first_name, last_name, phone, gender, age } = this.props.user;
     return (
       <Table.Row>
-        <Table.Cell>Kristan</Table.Cell>
-        <Table.Cell>Duthie</Table.Cell>
-        <Table.Cell>693-261-4129</Table.Cell>
-        <Table.Cell>Female</Table.Cell>
-        <Table.Cell>64</Table.Cell>
+        <Table.Cell>{this.props.user.get('first_name')}</Table.Cell>
+        <Table.Cell>{this.props.user.get('last_name')}</Table.Cell>
+        <Table.Cell>{this.props.user.get('phone')}</Table.Cell>
+        <Table.Cell>{this.props.user.get('gender')}</Table.Cell>
+        <Table.Cell>{this.props.user.get('age')}</Table.Cell>
         <Table.Cell>
           <Icon name={'remove circle'} bordered={true} color="red" />
         </Table.Cell>

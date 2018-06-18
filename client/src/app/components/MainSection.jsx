@@ -13,7 +13,7 @@ export default class MainSection extends React.Component {
 
   renderClients() {
     const { users } = this.props;
-    return MOCK_DATA.map(user => <TableRow key={user.id} user={user} />);
+    return users.map(user => <TableRow key={user.get('id')} user={user} />).toArray();
   }
 
   // [{

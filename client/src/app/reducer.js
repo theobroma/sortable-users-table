@@ -10,28 +10,11 @@ import {
   FETCH_USERS_FULFILLED
 } from './actions';
 
-// const InitialState = {
-//   users: [],
-//   pending: false,
-//   eerrorMessage: null
-// };
-
 export const usersInitialState = fromJS({
   users: {},
   pending: false,
   errorMessage: ''
 });
-
-// function users(state = usersInitialState, action) {
-//   switch (action.type) {
-//     case FETCH_USERS_REQUEST:
-//       return {
-//         ...state
-//       };
-//     default:
-//       return state;
-//   }
-// }
 
 function users(state = usersInitialState, action) {
   switch (action.type) {
