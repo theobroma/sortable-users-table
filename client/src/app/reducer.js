@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { fromJS, Map } from 'immutable';
 //mock data
 import MOCK_DATA from './helpers/MOCK_DATA.json';
 
@@ -10,22 +9,31 @@ import {
   FETCH_USERS_FULFILLED
 } from './actions';
 
-export const usersInitialState = fromJS({
-  users: {},
+export const usersInitialState = {
+  data: [],
   pending: false,
   errorMessage: ''
-});
+};
 
 function users(state = usersInitialState, action) {
   switch (action.type) {
     case FETCH_USERS_PENDING:
-      return state.set('pending', true);
-
+      return {
+        ...state,
+        pending: true
+      };
     case FETCH_USERS_REJECTED:
-      return state.set('pending', false).set('errorMessage', action.error);
-
+      return {
+        ...state,
+        pending: false,
+        errorMessage: action.error
+      };
     case FETCH_USERS_FULFILLED:
-      return state.set('pending', false).set('users', action.users);
+      return {
+        ...state,
+        pending: false,
+        data: action.users
+      };
     default:
       return state;
   }

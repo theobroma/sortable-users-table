@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { fromJS, Map } from 'immutable';
 
 import MainSection from '../components/MainSection';
 import FormSection from '../components/FormSection';
@@ -29,7 +28,7 @@ class MainApp extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    users: state.users.get('users')
+    users: state.users.data
   };
 };
 

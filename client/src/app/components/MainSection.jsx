@@ -11,9 +11,9 @@ export default class MainSection extends React.Component {
     this.props.getUsers();
   }
 
-  renderClients() {
+  renderUsers() {
     const { users } = this.props;
-    return users.map(user => <TableRow key={user.get('id')} user={user} />).toArray();
+    return users.map(user => <TableRow key={user.id} user={user} />);
   }
 
   // [{
@@ -26,7 +26,6 @@ export default class MainSection extends React.Component {
   // }, {
 
   render() {
-    const { clients } = this.props;
     const tableHeader = (
       <Table.Header>
         <Table.Row>
@@ -55,7 +54,7 @@ export default class MainSection extends React.Component {
           <Grid.Column>
             <Table striped>
               {tableHeader}
-              <Table.Body>{this.renderClients()}</Table.Body>
+              <Table.Body>{this.renderUsers()}</Table.Body>
             </Table>
           </Grid.Column>
         </Grid.Row>

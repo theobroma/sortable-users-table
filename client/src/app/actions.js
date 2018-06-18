@@ -1,4 +1,3 @@
-import { fromJS, Map } from 'immutable';
 import UserApi from './api/usersApi';
 
 export const FETCH_USERS_PENDING = 'FETCH_USERS_PENDING';
@@ -22,8 +21,7 @@ export function getUsers() {
     dispatch(getUsersPending());
     UserApi.getUsers()
       .then(users => {
-        //console.log(parseUsers(users));
-        return fromJS(users);
+        return users;
       })
       .then(users => {
         dispatch(getUsersFullfilled(users));
