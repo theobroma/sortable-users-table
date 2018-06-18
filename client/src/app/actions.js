@@ -20,11 +20,18 @@ export function getUsers() {
   return dispatch => {
     dispatch(getUsersPending());
     UserApi.getUsers()
+      .then(sleeper(100))
       .then(users => {
         return users;
       })
       .then(users => {
         dispatch(getUsersFullfilled(users));
       });
+  };
+}
+//utility fn for request delay
+function sleeper(ms) {
+  return function(x) {
+    return new Promise(resolve => setTimeout(() => resolve(x), ms));
   };
 }
