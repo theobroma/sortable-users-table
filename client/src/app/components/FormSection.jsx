@@ -82,6 +82,7 @@ class FormSection extends React.Component {
             <Form.Input
               icon="user"
               iconPosition="left"
+              type="text"
               label="First Name"
               placeholder="First Name"
               value={firstName}
@@ -93,6 +94,7 @@ class FormSection extends React.Component {
             <Form.Input
               icon="user"
               iconPosition="left"
+              type="text"
               label="Last Name"
               placeholder="Last Name"
               value={lastName}
@@ -104,6 +106,7 @@ class FormSection extends React.Component {
             <Form.Input
               icon="calendar alternate outline"
               iconPosition="left"
+              type="number"
               label="Age"
               placeholder="Age"
               value={age}
@@ -128,6 +131,7 @@ class FormSection extends React.Component {
               <Form.Input
                 icon="phone"
                 iconPosition="left"
+                type="tel"
                 placeholder="(xxx)"
                 size="mini"
                 value={phone1}
@@ -139,6 +143,7 @@ class FormSection extends React.Component {
               <label>Phone Number</label>
               <Input
                 placeholder="xxx"
+                type="tel"
                 size="mini"
                 value={phone2}
                 name="phone2"
@@ -149,6 +154,7 @@ class FormSection extends React.Component {
               <label style={{ visibility: 'hidden' }}>Phone Number</label>
               <Input
                 placeholder="xxxx"
+                type="tel"
                 size="mini"
                 value={phone3}
                 name="phone3"
