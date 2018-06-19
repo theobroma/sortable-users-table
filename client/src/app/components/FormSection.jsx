@@ -73,8 +73,10 @@ class FormSection extends React.Component {
       <Form {...formState}>
         <Segment stacked raised>
           <Form.Field>
-            <label>First Name</label>
-            <input
+            <Form.Input
+              icon="user"
+              iconPosition="left"
+              label="First Name"
               placeholder="First Name"
               value={first_name}
               name="first_name"
@@ -82,8 +84,10 @@ class FormSection extends React.Component {
             />
           </Form.Field>
           <Form.Field>
-            <label>Last Name</label>
-            <input
+            <Form.Input
+              icon="user"
+              iconPosition="left"
+              label="Last Name"
               placeholder="Last Name"
               value={last_name}
               name="last_name"
@@ -91,8 +95,15 @@ class FormSection extends React.Component {
             />
           </Form.Field>
           <Form.Field>
-            <label>Age</label>
-            <input placeholder="Age" value={age} name="age" onChange={this.onChange} />
+            <Form.Input
+              icon="calendar alternate outline"
+              iconPosition="left"
+              label="Age"
+              placeholder="Age"
+              value={age}
+              name="age"
+              onChange={this.onChange}
+            />
           </Form.Field>
           <Form.Field>
             <Form.Select
@@ -108,7 +119,9 @@ class FormSection extends React.Component {
           <Form.Group widths="equal">
             <Form.Field>
               <label style={{ visibility: 'hidden' }}>Phone Number</label>
-              <Input
+              <Form.Input
+                icon="phone"
+                iconPosition="left"
                 placeholder="(xxx)"
                 size="mini"
                 value={phone1}
