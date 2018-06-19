@@ -6,7 +6,9 @@ import {
   FETCH_USERS_PENDING,
   FETCH_USERS_FULLFILED,
   FETCH_USERS_REJECTED,
-  FETCH_USERS_FULFILLED
+  FETCH_USERS_FULFILLED,
+  ADD_USER_PENDING,
+  ADD_USER_FULFILLED
 } from './actions';
 
 export const usersInitialState = {
@@ -18,6 +20,7 @@ export const usersInitialState = {
 function users(state = usersInitialState, action) {
   switch (action.type) {
     case FETCH_USERS_PENDING:
+    case ADD_USER_PENDING:
       return {
         ...state,
         pending: true
@@ -34,6 +37,19 @@ function users(state = usersInitialState, action) {
         pending: false,
         data: action.users
       };
+    case ADD_USER_FULFILLED:
+      return {
+        ...state,
+        pending: false,
+        data: [
+          {
+            id: action.id,
+            ...action.user
+          },
+          ...state.data
+        ]
+      };
+      return state;
     default:
       return state;
   }

@@ -2,14 +2,19 @@ import axios from 'axios';
 import mockData from '../helpers/MOCK_DATA.json';
 
 //url fake :)
-export default {
-  getUsers() {
-    let url = 'https://jsonplaceholder.typicode.com/posts';
-    return axios.get(url).then(response => {
-      return mockData;
-    });
-  }
-};
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
+export function getUsers() {
+  return axios.get(url).then(response => {
+    return mockData;
+  });
+}
+
+export function addUser(user) {
+  return axios.post(url, user).then(response => {
+    return user;
+  });
+}
 
 // export default {
 //   getUsers() {
@@ -19,3 +24,7 @@ export default {
 //     });
 //   }
 // };
+export default {
+  getUsers,
+  addUser
+};

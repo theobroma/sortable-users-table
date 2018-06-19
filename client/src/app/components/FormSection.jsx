@@ -29,6 +29,31 @@ class FormSection extends React.Component {
     });
   };
 
+  // onSubmit(e) {
+  //   e.preventDefault();
+  //   if (this.isValid()) {
+  //     this.setState({ errors: {}, isLoading: true });
+  //     this.props.login(this.state).then(
+  //       res => this.context.router.push('/books'),
+  //       err => this.setState({ errors: err.response.data.errors, isLoading: false })
+  //     );
+  //   }
+  // }
+
+  onSubmit = e => {
+    e.preventDefault();
+    const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
+    const user = {
+      first_name,
+      last_name,
+      phone: `${phone1}-${phone2}-${phone3}`,
+      gender,
+      age
+    };
+    console.log(user);
+    this.props.addUser(user);
+  };
+
   render() {
     const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
 
@@ -107,7 +132,7 @@ class FormSection extends React.Component {
               />
             </Form.Field>
           </Form.Group>
-          <Form.Button color="teal" fluid size="tiny">
+          <Form.Button color="teal" fluid size="tiny" onClick={this.onSubmit}>
             Submit
           </Form.Button>
         </Segment>

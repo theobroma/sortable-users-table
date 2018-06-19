@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import MainSection from '../components/MainSection';
-import FormSection from '../components/FormSection';
+import FormSection from '../containers/FormSection';
 import { getUsers } from '../actions';
 
 class MainApp extends React.Component {
