@@ -14,8 +14,8 @@ export default class MainSection extends React.Component {
 
   // [{
   // 	"id": "d80adb99-4b36-41d4-920f-b7d54b33fd54",
-  // 	"first_name": "Kristan",
-  // 	"last_name": "Duthie",
+  // 	"firstName": "Kristan",
+  // 	"lastName": "Duthie",
   // 	"phone": "693-261-4129",
   // 	"gender": "Female",
   // 	"age": 64

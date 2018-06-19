@@ -10,8 +10,8 @@ const options = [
 
 class FormSection extends React.Component {
   state = {
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     phone1: '',
     phone2: '',
     phone3: '',
@@ -27,7 +27,7 @@ class FormSection extends React.Component {
     const name = e.target.name || data.name;
     const value = e.target.value || data.value;
     this.setState({ [name]: value }, () => {
-      console.log(this.state);
+      //console.log(this.state);
     });
   };
 
@@ -48,21 +48,21 @@ class FormSection extends React.Component {
 
   submitForm = e => {
     e.preventDefault();
-    const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
+    const { firstName, lastName, phone1, phone2, phone3, gender, age } = this.state;
     const user = {
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       phone: `${phone1}-${phone2}-${phone3}`,
       gender,
       age
     };
-    console.log(user);
+    //console.log(user);
     this.props.addUser(user);
-    this.setState();
+    this.resetForm();
   };
 
   render() {
-    const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
+    const { firstName, lastName, phone1, phone2, phone3, gender, age } = this.state;
     let formState = {};
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
@@ -84,8 +84,8 @@ class FormSection extends React.Component {
               iconPosition="left"
               label="First Name"
               placeholder="First Name"
-              value={first_name}
-              name="first_name"
+              value={firstName}
+              name="firstName"
               onChange={this.onChange}
             />
           </Form.Field>
@@ -95,8 +95,8 @@ class FormSection extends React.Component {
               iconPosition="left"
               label="Last Name"
               placeholder="Last Name"
-              value={last_name}
-              name="last_name"
+              value={lastName}
+              name="lastName"
               onChange={this.onChange}
             />
           </Form.Field>

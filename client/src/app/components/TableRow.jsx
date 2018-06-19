@@ -5,11 +5,11 @@ import TableRowItem from './TableRowItem';
 
 export class TableRow extends React.Component {
   render() {
-    const { id, first_name, last_name, phone, gender, age } = this.props.user;
+    const { id, firstName, lastName, phone, gender, age } = this.props.user;
     return (
       <Table.Row>
-        <Table.Cell>{first_name}</Table.Cell>
-        <Table.Cell>{last_name}</Table.Cell>
+        <Table.Cell>{firstName}</Table.Cell>
+        <Table.Cell>{lastName}</Table.Cell>
         <Table.Cell>{phone}</Table.Cell>
         <Table.Cell>{gender}</Table.Cell>
         <Table.Cell>{age}</Table.Cell>
