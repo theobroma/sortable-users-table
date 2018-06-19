@@ -7,12 +7,8 @@ import { getUsers } from '../actions';
 
 class MainApp extends React.Component {
   componentWillMount() {
-    this.props.getUsers();
+    //this.props.getUsers();
   }
-  // componentWillUpdate(nextProps, nextState) {
-  //   console.log(nextProps);
-  //   localStorage.setItem('users', JSON.stringify(nextProps.users));
-  // }
 
   render() {
     const { users } = this.props;
