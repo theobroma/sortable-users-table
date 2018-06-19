@@ -10,14 +10,16 @@ const options = [
 
 class FormSection extends React.Component {
   state = {
-    first_name: 'Hello',
+    first_name: '',
     last_name: '',
-    phone1: 555,
-    phone2: 555,
-    phone3: 9999,
-    gender: 'female',
-    age: 0
+    phone1: '',
+    phone2: '',
+    phone3: '',
+    gender: 'male',
+    age: ''
   };
+  // preserve the initial state in a new object
+  baseState = this.state;
 
   onChange = (e, data) => {
     //console.log(e.target);
@@ -40,7 +42,11 @@ class FormSection extends React.Component {
   //   }
   // }
 
-  onSubmit = e => {
+  resetForm = () => {
+    this.setState(this.baseState);
+  };
+
+  submitForm = e => {
     e.preventDefault();
     const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
     const user = {
@@ -52,12 +58,12 @@ class FormSection extends React.Component {
     };
     console.log(user);
     this.props.addUser(user);
+    this.setState();
   };
 
   render() {
     const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
     let formState = {};
-
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
         Add Item
@@ -150,9 +156,14 @@ class FormSection extends React.Component {
               />
             </Form.Field>
           </Form.Group>
-          <Form.Button color="teal" fluid size="tiny" onClick={this.onSubmit}>
-            Submit
-          </Form.Button>
+          <Form.Group widths="equal">
+            <Form.Button color="teal" fluid size="tiny" onClick={this.submitForm}>
+              Submit
+            </Form.Button>
+            <Form.Button color="yellow" fluid size="tiny" onClick={this.resetForm}>
+              Cancel
+            </Form.Button>
+          </Form.Group>
         </Segment>
       </Form>
     );
