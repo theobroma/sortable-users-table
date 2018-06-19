@@ -56,6 +56,7 @@ class FormSection extends React.Component {
 
   render() {
     const { first_name, last_name, phone1, phone2, phone3, gender, age } = this.state;
+    let formState = {};
 
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
@@ -64,8 +65,12 @@ class FormSection extends React.Component {
       </Header>
     );
 
+    if (this.props.users.pending) {
+      formState = { loading: true };
+    }
+
     const formContent = (
-      <Form>
+      <Form {...formState}>
         <Segment stacked raised>
           <Form.Field>
             <label>First Name</label>
