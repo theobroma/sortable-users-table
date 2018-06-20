@@ -16,7 +16,7 @@ class MainApp extends React.Component {
       <div className="container">
         <div className="header" />
         <main className="main-content">
-          <MainSection users={users} />
+          <MainSection users={users} removeUser={this.props.removeUser} />
         </main>
         <aside className="right-sidebar">
           <FormSection />

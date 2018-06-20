@@ -5,7 +5,9 @@ import TableRowItem from './TableRowItem';
 
 export class TableRow extends React.Component {
   render() {
+    const { removeUser } = this.props;
     const { id, firstName, lastName, phone, gender, age } = this.props.user;
+
     return (
       <Table.Row>
         <Table.Cell>{firstName}</Table.Cell>
@@ -14,7 +16,7 @@ export class TableRow extends React.Component {
         <Table.Cell>{gender}</Table.Cell>
         <Table.Cell>{age}</Table.Cell>
         <Table.Cell>
-          <Icon name={'remove circle'} bordered={true} color="red" />
+          <Icon name={'trash alternate'} onClick={() => removeUser(id)} />
         </Table.Cell>
       </Table.Row>
     );

@@ -9,6 +9,10 @@ export const ADD_USER_PENDING = 'ADD_USER_PENDING';
 export const ADD_USER_FULFILLED = 'ADD_USER_FULFILLED';
 export const ADD_USER_REJECTED = 'ADD_USER_REJECTED';
 
+export const REMOVE_USER_PENDING = 'REMOVE_USER_PENDING';
+export const REMOVE_USER_FULFILLED = 'REMOVE_USER_FULFILLED';
+export const REMOVE_USER_REJECTED = 'REMOVE_USER_REJECTED';
+
 export function getUsersPending() {
   return { type: FETCH_USERS_PENDING };
 }
@@ -57,6 +61,27 @@ export function addUser(user) {
   };
 }
 
+export function removeUser(id) {
+  return dispatch => {
+    dispatch(removeUserPending());
+    UserApi.removeUser(id)
+      .then(sleeper(100))
+      .then(user => {
+        dispatch(removeUserFullfilled(id));
+      })
+      .catch(function(response) {
+        console.log(response);
+      });
+  };
+}
+
+export const removeUserPending = id => {
+  return { type: REMOVE_USER_PENDING, id };
+};
+
+export const removeUserFullfilled = id => {
+  return { type: REMOVE_USER_FULFILLED, id };
+};
 //utility fn for request delay
 function sleeper(ms) {
   return function(x) {

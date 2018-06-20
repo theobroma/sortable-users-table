@@ -8,7 +8,9 @@ import {
   FETCH_USERS_REJECTED,
   FETCH_USERS_FULFILLED,
   ADD_USER_PENDING,
-  ADD_USER_FULFILLED
+  ADD_USER_FULFILLED,
+  REMOVE_USER_PENDING,
+  REMOVE_USER_FULFILLED
 } from './actions';
 
 export const usersInitialState = {
@@ -21,6 +23,7 @@ function users(state = usersInitialState, action) {
   switch (action.type) {
     case FETCH_USERS_PENDING:
     case ADD_USER_PENDING:
+    case REMOVE_USER_PENDING:
       return {
         ...state,
         pending: true
@@ -49,7 +52,12 @@ function users(state = usersInitialState, action) {
           ...state.data
         ]
       };
-      return state;
+    case REMOVE_USER_FULFILLED:
+      return {
+        ...state,
+        pending: false,
+        data: state.data.filter(user => user.id !== action.id)
+      };
     default:
       return state;
   }
