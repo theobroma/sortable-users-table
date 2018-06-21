@@ -71,7 +71,15 @@ export default class TableSection extends React.Component {
             return (
               <Table.HeaderCell key={`thc-${idx}`} onClick={() => this.handleSort(item.prop)}>
                 {item.name}
-                <Icon name={'sort'} />
+                {this.state.columnToSort === item.prop ? (
+                  this.state.sortDirection === 'asc' ? (
+                    <Icon name={'sort up'} color={'teal'} />
+                  ) : (
+                    <Icon name={'sort down'} color={'teal'} />
+                  )
+                ) : (
+                  <Icon name={'sort'} color={'grey'} />
+                )}
               </Table.HeaderCell>
             );
           })}
