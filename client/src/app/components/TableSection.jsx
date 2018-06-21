@@ -14,14 +14,17 @@ const invertDirection = {
 
 export default class TableSection extends React.Component {
   state = {
-    data: [],
     columnToSort: '',
     sortDirection: 'desc'
   };
 
   renderUsers() {
     const { users } = this.props;
-    return users.map(user => <TableRow key={user.id} user={user} />);
+    let data = users;
+    if (this.state.columnToSort.length > 0) {
+      data = orderBy(this.props.users, this.state.columnToSort, this.state.sortDirection);
+    }
+    return data.map(user => <TableRow key={user.id} user={user} />);
   }
 
   handleSort = columnName => {
@@ -32,7 +35,7 @@ export default class TableSection extends React.Component {
           state.columnToSort === columnName ? invertDirection[state.sortDirection] : 'asc'
       }),
       () => {
-        console.log(this.state);
+        //console.log(this.state);
       }
     );
   };
