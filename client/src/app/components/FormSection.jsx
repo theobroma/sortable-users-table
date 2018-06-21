@@ -12,9 +12,7 @@ class FormSection extends React.Component {
   state = {
     firstName: '',
     lastName: '',
-    phone1: '',
-    phone2: '',
-    phone3: '',
+    phone: '',
     gender: 'male',
     age: ''
   };
@@ -48,21 +46,12 @@ class FormSection extends React.Component {
 
   submitForm = e => {
     e.preventDefault();
-    const { firstName, lastName, phone1, phone2, phone3, gender, age } = this.state;
-    const user = {
-      firstName,
-      lastName,
-      phone: `${phone1}-${phone2}-${phone3}`,
-      gender,
-      age
-    };
-    //console.log(user);
-    this.props.addUser(user);
+    this.props.addUser(this.state);
     this.resetForm();
   };
 
   render() {
-    const { firstName, lastName, phone1, phone2, phone3, gender, age } = this.state;
+    const { firstName, lastName, phone, gender, age } = this.state;
     let formState = {};
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
@@ -125,43 +114,19 @@ class FormSection extends React.Component {
               onChange={this.onChange}
             />
           </Form.Field>
-          <Form.Group widths="equal">
-            <Form.Field>
-              <label style={{ visibility: 'hidden' }}>Phone Number</label>
-              <Form.Input
-                icon="phone"
-                iconPosition="left"
-                type="tel"
-                placeholder="(xxx)"
-                size="mini"
-                value={phone1}
-                name="phone1"
-                onChange={this.onChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>Phone Number</label>
-              <Input
-                placeholder="xxx"
-                type="tel"
-                size="mini"
-                value={phone2}
-                name="phone2"
-                onChange={this.onChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label style={{ visibility: 'hidden' }}>Phone Number</label>
-              <Input
-                placeholder="xxxx"
-                type="tel"
-                size="mini"
-                value={phone3}
-                name="phone3"
-                onChange={this.onChange}
-              />
-            </Form.Field>
-          </Form.Group>
+          <Form.Field>
+            <Form.Input
+              icon="phone"
+              iconPosition="left"
+              label="Phone Number"
+              type="tel"
+              placeholder="(xxx-xxx-xxxx)"
+              size="mini"
+              value={phone}
+              name="phone"
+              onChange={this.onChange}
+            />
+          </Form.Field>
           <Form.Group widths="equal">
             <Form.Button color="teal" fluid size="tiny" onClick={this.submitForm}>
               Submit
