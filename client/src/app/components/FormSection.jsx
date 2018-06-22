@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { connect } from 'react-redux';
+import Validator from 'validatorjs';
 import { Grid, Form, Icon, Input, Segment, Header } from 'semantic-ui-react';
 
 const options = [
@@ -27,12 +28,76 @@ class FormSection extends React.Component {
     age: ''
   };
 
+  // componentDidMount() {
+  //   this.val();
+  // }
+
+  // val = () => {
+  //   const data = {
+  //     name: 'John',
+  //     email: 'johndoegmail.com',
+  //     age: 13
+  //   };
+
+  //   const rules = {
+  //     name: 'required',
+  //     email: 'required|email',
+  //     age: 'min:18'
+  //   };
+  //   console.log(/^\d{3}-\d{3}-\d{4}$/.test('555-555-9999'));
+
+  //   const validator = new Validator(data, rules);
+  //   //console.log(validator);
+  //   validator.passes(function() {
+  //     // Validation passed
+  //     console.log('val passes');
+  //   });
+
+  //   validator.fails(function() {
+  //     const error = validator.errors.first('name');
+  //     console.log(validator.errors);
+  //   });
+  // };
+
+  validate = () => {
+    const data = this.state;
+    const rules = {
+      firstName: 'required|alpha',
+      lastName: 'required|alpha',
+      phone: 'required|telephone',
+      gender: 'required',
+      age: 'min:18|numeric'
+    };
+
+    const validator = new Validator(data, rules);
+
+    Validator.register(
+      'telephone',
+      function(value, requirement, attribute) {
+        // requirement parameter defaults to null
+        return /^\d{3}-\d{3}-\d{4}$/.test(value);
+      },
+      'The :attribute phone number is not in the format XXX-XXX-XXXX.'
+    );
+    //console.log(validator);
+    validator.passes(function() {
+      // Validation passed
+      console.log('val passes');
+    });
+
+    validator.fails(function() {
+      const error = validator.errors.first('name');
+      console.log(validator.errors);
+    });
+  };
+
   onChange = (e, data) => {
     //console.log(e.target);
     //console.log(data);
     const name = e.target.name || data.name;
     const value = e.target.value || data.value;
     this.setState({ [name]: value }, () => {
+      this.validate();
       //console.log(this.state);
     });
   };
