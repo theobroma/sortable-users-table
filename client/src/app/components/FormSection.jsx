@@ -22,17 +22,26 @@ class FormSection extends React.Component {
       phone: '',
       gender: '',
       age: ''
-    }
+    },
+    isFormValid: true
   };
   // preserve the initial state in a new object
   baseState = this.state;
 
-  clearState = {
+  clearFormState = {
     firstName: '',
     lastName: '',
     phone: '',
     gender: '',
-    age: ''
+    age: '',
+    formErrors: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      gender: '',
+      age: ''
+    },
+    isFormValid: true
   };
 
   validate = () => {
@@ -64,7 +73,8 @@ class FormSection extends React.Component {
           phone: '',
           gender: '',
           age: ''
-        }
+        },
+        isFormValid: true
       });
       console.log('val passes');
     });
@@ -72,7 +82,7 @@ class FormSection extends React.Component {
     validator.fails(() => {
       const error = validator.errors.first('name');
       console.log(validator.errors);
-      this.setState({ formErrors: validator.errors.errors });
+      this.setState({ formErrors: validator.errors.errors, isFormValid: false });
     });
   };
 
@@ -86,7 +96,7 @@ class FormSection extends React.Component {
   };
 
   clearForm = () => {
-    this.setState(this.clearState);
+    this.setState(this.clearFormState);
   };
 
   resetForm = () => {
@@ -95,8 +105,11 @@ class FormSection extends React.Component {
 
   submitForm = e => {
     e.preventDefault();
-    this.props.addUser(this.state);
-    this.resetForm();
+    //this.validate();
+    if (this.state.isFormValid) {
+      this.props.addUser(this.state);
+      this.resetForm();
+    }
   };
 
   render() {
@@ -182,7 +195,14 @@ class FormSection extends React.Component {
             {formErrors.phone && <Message error content={formErrors.phone[0]} />}
           </Form.Field>
           <Form.Group widths="equal">
-            <Form.Button color="yellow" fluid size="tiny" onClick={this.submitForm} basic>
+            <Form.Button
+              color="yellow"
+              fluid
+              size="tiny"
+              onClick={this.submitForm}
+              basic
+              disabled={!this.state.isFormValid}
+            >
               <Icon name="dot circle outline" /> Submit
             </Form.Button>
             <Form.Button color="yellow" fluid size="tiny" onClick={this.clearForm} basic>
