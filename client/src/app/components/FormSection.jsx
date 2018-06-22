@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { connect } from 'react-redux';
 import Validator from 'validatorjs';
-import { Grid, Form, Icon, Input, Segment, Header } from 'semantic-ui-react';
+import { Grid, Form, Icon, Input, Segment, Header, Message } from 'semantic-ui-react';
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -15,7 +15,14 @@ class FormSection extends React.Component {
     lastName: 'Jobs',
     phone: '555-555-9999',
     gender: 'male',
-    age: '56'
+    age: '56',
+    formErrors: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      gender: '',
+      age: ''
+    }
   };
   // preserve the initial state in a new object
   baseState = this.state;
@@ -28,45 +35,14 @@ class FormSection extends React.Component {
     age: ''
   };
 
-  // componentDidMount() {
-  //   this.val();
-  // }
-
-  // val = () => {
-  //   const data = {
-  //     name: 'John',
-  //     email: 'johndoegmail.com',
-  //     age: 13
-  //   };
-
-  //   const rules = {
-  //     name: 'required',
-  //     email: 'required|email',
-  //     age: 'min:18'
-  //   };
-  //   console.log(/^\d{3}-\d{3}-\d{4}$/.test('555-555-9999'));
-
-  //   const validator = new Validator(data, rules);
-  //   //console.log(validator);
-  //   validator.passes(function() {
-  //     // Validation passed
-  //     console.log('val passes');
-  //   });
-
-  //   validator.fails(function() {
-  //     const error = validator.errors.first('name');
-  //     console.log(validator.errors);
-  //   });
-  // };
-
   validate = () => {
     const data = this.state;
     const rules = {
-      firstName: 'required|alpha',
-      lastName: 'required|alpha',
+      firstName: 'required|alpha|min:3|max:30',
+      lastName: 'required|alpha|min:3|max:30',
       phone: 'required|telephone',
       gender: 'required',
-      age: 'min:18|numeric'
+      age: 'between:18,65|numeric'
     };
 
     const validator = new Validator(data, rules);
@@ -74,26 +50,33 @@ class FormSection extends React.Component {
     Validator.register(
       'telephone',
       function(value, requirement, attribute) {
-        // requirement parameter defaults to null
         return /^\d{3}-\d{3}-\d{4}$/.test(value);
       },
       'The :attribute phone number is not in the format XXX-XXX-XXXX.'
     );
     //console.log(validator);
-    validator.passes(function() {
+    validator.passes(() => {
       // Validation passed
+      this.setState({
+        formErrors: {
+          firstName: '',
+          lastName: '',
+          phone: '',
+          gender: '',
+          age: ''
+        }
+      });
       console.log('val passes');
     });
 
-    validator.fails(function() {
+    validator.fails(() => {
       const error = validator.errors.first('name');
       console.log(validator.errors);
+      this.setState({ formErrors: validator.errors.errors });
     });
   };
 
   onChange = (e, data) => {
-    //console.log(e.target);
-    //console.log(data);
     const name = e.target.name || data.name;
     const value = e.target.value || data.value;
     this.setState({ [name]: value }, () => {
@@ -102,16 +85,6 @@ class FormSection extends React.Component {
     });
   };
 
-  // onSubmit(e) {
-  //   e.preventDefault();
-  //   if (this.isValid()) {
-  //     this.setState({ errors: {}, isLoading: true });
-  //     this.props.login(this.state).then(
-  //       res => this.context.router.push('/books'),
-  //       err => this.setState({ errors: err.response.data.errors, isLoading: false })
-  //     );
-  //   }
-  // }
   clearForm = () => {
     this.setState(this.clearState);
   };
@@ -127,7 +100,7 @@ class FormSection extends React.Component {
   };
 
   render() {
-    const { firstName, lastName, phone, gender, age } = this.state;
+    const { firstName, lastName, phone, gender, age, formErrors } = this.state;
     let formState = {};
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
@@ -137,8 +110,9 @@ class FormSection extends React.Component {
     );
 
     if (this.props.users.pending) {
-      formState = { loading: true };
+      formState.loading = true;
     }
+    formState.error = true;
 
     const formContent = (
       <Form {...formState}>
@@ -154,6 +128,7 @@ class FormSection extends React.Component {
               name="firstName"
               onChange={this.onChange}
             />
+            {formErrors.firstName && <Message error content={formErrors.firstName[0]} />}
           </Form.Field>
           <Form.Field>
             <Form.Input
@@ -166,6 +141,7 @@ class FormSection extends React.Component {
               name="lastName"
               onChange={this.onChange}
             />
+            {formErrors.lastName && <Message error content={formErrors.lastName[0]} />}
           </Form.Field>
           <Form.Field>
             <Form.Input
@@ -178,6 +154,7 @@ class FormSection extends React.Component {
               name="age"
               onChange={this.onChange}
             />
+            {formErrors.age && <Message error content={formErrors.age[0]} />}
           </Form.Field>
           <Form.Field>
             <Form.Select
@@ -202,6 +179,7 @@ class FormSection extends React.Component {
               name="phone"
               onChange={this.onChange}
             />
+            {formErrors.phone && <Message error content={formErrors.phone[0]} />}
           </Form.Field>
           <Form.Group widths="equal">
             <Form.Button color="yellow" fluid size="tiny" onClick={this.submitForm} basic>
