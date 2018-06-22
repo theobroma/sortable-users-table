@@ -10,14 +10,22 @@ const options = [
 
 class FormSection extends React.Component {
   state = {
-    firstName: '',
-    lastName: '',
-    phone: '',
+    firstName: 'Steve',
+    lastName: 'Jobs',
+    phone: '555-555-9999',
     gender: 'male',
-    age: ''
+    age: '56'
   };
   // preserve the initial state in a new object
   baseState = this.state;
+
+  clearState = {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    gender: '',
+    age: ''
+  };
 
   onChange = (e, data) => {
     //console.log(e.target);
@@ -39,6 +47,9 @@ class FormSection extends React.Component {
   //     );
   //   }
   // }
+  clearForm = () => {
+    this.setState(this.clearState);
+  };
 
   resetForm = () => {
     this.setState(this.baseState);
@@ -128,11 +139,14 @@ class FormSection extends React.Component {
             />
           </Form.Field>
           <Form.Group widths="equal">
-            <Form.Button color="teal" fluid size="tiny" onClick={this.submitForm}>
-              Submit
+            <Form.Button color="yellow" fluid size="tiny" onClick={this.submitForm} basic>
+              <Icon name="dot circle outline" /> Submit
             </Form.Button>
-            <Form.Button color="yellow" fluid size="tiny" onClick={this.resetForm}>
-              Cancel
+            <Form.Button color="yellow" fluid size="tiny" onClick={this.clearForm} basic>
+              <Icon name="eraser" />Clear
+            </Form.Button>
+            <Form.Button color="yellow" fluid size="tiny" onClick={this.resetForm} basic>
+              <Icon name="refresh" />Reset
             </Form.Button>
           </Form.Group>
         </Segment>
