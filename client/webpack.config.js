@@ -57,6 +57,11 @@ module.exports = (function makeConfig() {
     ]
   };
 
+  config.externals = {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  };
+
   config.plugins = [
     new HtmlWebpackPlugin({
       template: __dirname + '/src/public/index.html',
