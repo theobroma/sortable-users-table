@@ -1,6 +1,6 @@
 # CRM table
 
-![Screenshot](docs/img/front-page.jpg?raw=true)
+![Screenshot](docs/img/front-page.png?raw=true)
 
 
 ## Client side
