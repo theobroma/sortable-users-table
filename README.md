@@ -1,7 +1,11 @@
-# CRM table
+# Users table
+
+### Features
+
+- React/Redux
+- Semantic UI
 
 ![Screenshot](docs/img/front-page.png?raw=true)
-
 
 ## Client side
 
