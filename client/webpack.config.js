@@ -14,9 +14,6 @@ config.resolve = {
   extensions: ['.js', '.jsx', '.css']
 };
 
-// config.devtool = 'eval-source-map';
-//config.devtool = 'cheap-module-eval-source-map';
-
 config.module = {
   rules: [
     {
@@ -84,13 +81,14 @@ config.devServer = {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
+    // config.devtool = 'eval-source-map';
     config.devtool = 'cheap-module-eval-source-map';
   }
 
   if (argv.mode === 'production') {
     config.devtool = 'none';
     config.optimization = {
-      minimize: false
+      minimize: true
     };
   }
 

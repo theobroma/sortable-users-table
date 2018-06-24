@@ -6,3 +6,5 @@ client/dist
 server/dist
 #vs code setting folder
 .vscode
+#webpack stats
+client/stats.json
