@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux';
-//mock data
-import MOCK_DATA from './helpers/MOCK_DATA.json';
 
 import {
   FETCH_USERS_PENDING,
@@ -63,12 +61,4 @@ function users(state = usersInitialState, action) {
   }
 }
 
-// export const users = (state = [], action) => {
-//   switch (action.type) {
-//     case 'ACTION_TYPE':
-//       return;
-//     default:
-//       return state;
-//   }
-// };
 export default combineReducers({ users });

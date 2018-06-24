@@ -117,8 +117,8 @@ class FormSection extends React.Component {
     let formState = {};
     const formHeader = (
       <Header as="h2" color="teal" textAlign="center">
-        Add Item
-        <Header.Subheader>Try to add some new item to the table...</Header.Subheader>
+        Add User
+        <Header.Subheader>Try to add new user to the table...</Header.Subheader>
       </Header>
     );
 

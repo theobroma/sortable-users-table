@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import { Table, Icon } from 'semantic-ui-react';
-import TableRowItem from './TableRowItem';
 
 export class TableRow extends React.Component {
   render() {
