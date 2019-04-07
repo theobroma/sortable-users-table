@@ -10,14 +10,15 @@ config.entry = __dirname + '/src/app/app.jsx';
 
 config.output = {
   path: __dirname + '/dist',
-  filename: '[name].[hash].js'
+  // filename: '[name].[hash].js',
+  filename: '[name].js',
 };
 
 config.resolve = {
   extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.png'],
   alias: {
-    images: path.resolve(__dirname, 'src/app/assets/images')
-  }
+    images: path.resolve(__dirname, 'src/app/assets/images'),
+  },
 };
 
 config.module = {
@@ -25,12 +26,12 @@ config.module = {
     {
       test: /\.jsx?$/,
       use: {
-        loader: 'babel-loader?cacheDirectory'
+        loader: 'babel-loader?cacheDirectory',
         // options: {
         //   presets: ['env', 'react', 'stage-0']
         // }
       },
-      exclude: /node_modules/
+      exclude: /node_modules/,
     },
     {
       test: /\.(sass|scss)$/,
@@ -40,9 +41,9 @@ config.module = {
           { loader: 'css-loader' },
           //{ loader: 'css-loader', options: { minimize: true } },
           { loader: 'postcss-loader' },
-          { loader: 'sass-loader' }
-        ]
-      })
+          { loader: 'sass-loader' },
+        ],
+      }),
     },
     {
       test: /\.(jpe?g|png|gif|svg)$/i,
@@ -53,64 +54,64 @@ config.module = {
           loader: 'image-webpack-loader',
           query: {
             mozjpeg: {
-              progressive: true
+              progressive: true,
             },
             gifsicle: {
-              interlaced: false
+              interlaced: false,
             },
             optipng: {
-              optimizationLevel: 4
+              optimizationLevel: 4,
             },
             pngquant: {
               quality: '75-90',
-              speed: 3
-            }
-          }
-        }
+              speed: 3,
+            },
+          },
+        },
       ],
       exclude: /node_modules/,
-      include: __dirname
+      include: __dirname,
     },
     {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       use: {
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name][hash].[ext]'
-        }
-      }
-    }
-  ]
+          name: 'fonts/[name][hash].[ext]',
+        },
+      },
+    },
+  ],
 };
 
 config.externals = {
   react: 'React',
-  'react-dom': 'ReactDOM'
+  'react-dom': 'ReactDOM',
 };
 
 config.performance = {
-  hints: false
+  hints: false,
 };
 
 config.optimization = {
   splitChunks: {
     cacheGroups: {
-      commons: { test: /[\\/]node_modules[\\/]/, name: 'vendors', chunks: 'all' }
-    }
-  }
+      commons: { test: /[\\/]node_modules[\\/]/, name: 'vendors', chunks: 'all' },
+    },
+  },
 };
 
 config.plugins = [
   new HtmlWebpackPlugin({
     template: __dirname + '/src/public/index.html',
-    inject: 'body'
+    inject: 'body',
   }),
   new CopyWebpackPlugin([
     {
-      from: __dirname + '/src/public'
-    }
+      from: __dirname + '/src/public',
+    },
   ]),
-  new ExtractTextPlugin({ filename: 'css/[name].css' })
+  new ExtractTextPlugin({ filename: 'css/[name].css' }),
 ];
 
 module.exports = config;
