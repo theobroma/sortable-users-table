@@ -29,7 +29,8 @@ config.devServer = {
 config.devtool = 'source-map';
 
 config.plugins = [
-  new CleanWebpackPlugin(pathsToClean, cleanOptions),
+  // TODO: 1; need update 2; no need to use  if no hash in chunks name
+  // new CleanWebpackPlugin(pathsToClean, cleanOptions),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development'),
