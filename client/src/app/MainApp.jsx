@@ -1,9 +1,7 @@
-import { connect } from 'react-redux';
 import React from 'react';
 
-import TableSection from './containers/TableSection';
-import FormSection from './containers/FormSection';
-import { getUsers } from './actions';
+import TableSection from 'containers/TableSection';
+import FormSection from 'containers/FormSection';
 
 export default class MainApp extends React.Component {
   render() {

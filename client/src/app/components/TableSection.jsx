@@ -2,17 +2,17 @@ import React from 'react';
 import cx from 'classnames';
 import orderBy from 'lodash/orderBy';
 import { Grid, Table, Icon } from 'semantic-ui-react';
-import TableRow from '../Containers/TableRow';
+import TableRow from 'containers/TableRow';
 
 const invertDirection = {
   asc: 'desc',
-  desc: 'asc'
+  desc: 'asc',
 };
 
 export default class TableSection extends React.Component {
   state = {
     columnToSort: '',
-    sortDirection: 'desc'
+    sortDirection: 'desc',
   };
 
   renderUsers() {
@@ -29,7 +29,7 @@ export default class TableSection extends React.Component {
       state => ({
         columnToSort: columnName,
         sortDirection:
-          state.columnToSort === columnName ? invertDirection[state.sortDirection] : 'asc'
+          state.columnToSort === columnName ? invertDirection[state.sortDirection] : 'asc',
       }),
       () => {
         //console.log(this.state);
@@ -41,24 +41,24 @@ export default class TableSection extends React.Component {
     const header = [
       {
         name: 'First name',
-        prop: 'firstName'
+        prop: 'firstName',
       },
       {
         name: 'Last name',
-        prop: 'lastName'
+        prop: 'lastName',
       },
       {
         name: 'Phone',
-        prop: 'phone'
+        prop: 'phone',
       },
       {
         name: 'Gender',
-        prop: 'gender'
+        prop: 'gender',
       },
       {
         name: 'Age',
-        prop: 'age'
-      }
+        prop: 'age',
+      },
     ];
 
     const tableHeader = (

@@ -1,6 +1,17 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import TableRow from '../components/TableRow';
-import { removeUser } from '../actions';
+import TableRowComponent from 'components/TableRow';
+import { removeUser } from 'actions';
+
+class TableRow extends React.PureComponent {
+  render() {
+    const props = {
+      ...this.props,
+    };
+
+    return <TableRowComponent {...props} />;
+  }
+}
 
 const mapStateToProps = (state, props) => {
   return {};

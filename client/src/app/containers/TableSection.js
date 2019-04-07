@@ -1,17 +1,27 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import TableSection from '../components/TableSection';
-import { getUsers } from '../actions';
+import TableSectionComponent from 'components/TableSection';
+import { getUsers } from 'actions';
+
+class TableSection extends React.PureComponent {
+  render() {
+    const props = {
+      ...this.props,
+    };
+
+    return <TableSectionComponent {...props} />;
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    users: state.users.data
+    users: state.users.data,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getUsers: () => dispatch(getUsers())
+  getUsers: () => dispatch(getUsers()),
 });
 
 export default connect(

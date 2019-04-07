@@ -1,16 +1,27 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import FormSection from '../components/FormSection';
-import { addUser } from '../actions';
+import FormSectionComponent from 'components/FormSection';
+import { addUser } from 'actions';
 // import { toggleRowEditing, editRow } from '../actions';
+
+class FormSection extends React.PureComponent {
+  render() {
+    const props = {
+      ...this.props,
+    };
+
+    return <FormSectionComponent {...props} />;
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  addUser: user => dispatch(addUser(user))
+  addUser: user => dispatch(addUser(user)),
 });
 
 export default connect(
