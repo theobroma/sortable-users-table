@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import orderBy from 'lodash/orderBy';
 import { Grid, Table, Icon } from 'semantic-ui-react';
-import TableRow from '../Containers/TableRow';
+import TableRow from '../containers/TableRow';
 
 const invertDirection = {
   asc: 'desc',
